@@ -1,43 +1,68 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Navigation from '../../components/Navigation/Navigation';
-import MalicaBtn from '../../components/UI/Buttons/MalicaBtn';
+import React, { useState } from 'react';
 import MeniCard from '../../components/UI/Cards/MeniCard';
-import MaliceContext from '../../context/malice-context';
 import style from './NarocenaMalica.module.css';
+import MalicaBtn from '../../components/UI/Buttons/MalicaBtn';
+import { useNavigate } from 'react-router-dom';
+
+const MENIIJI = [
+	{
+		id: 1,
+		ime: 'Mesni meni',
+		vsebina: ['riž', 'piščanec', 'omaka', 'solata - zelena', 'pijača'],
+		tip: 'mesni',
+	},
+	{
+		id: 2,
+		ime: 'Vegi meni',
+		vsebina: ['krompir', 'soja', 'zelenjava', 'solata - mešana', 'pijača'],
+		tip: 'vegi',
+	},
+	{
+		id: 3,
+		ime: 'Lahki meni',
+		vsebina: ['Sendvič', 'Jogurt', 'Jabolko', 'pijača'],
+		tip: 'lahki',
+	},
+	{
+		id: 4,
+		ime: 'Mešani meni',
+		vsebina: [
+			'krompir',
+			'piščančji zrezek',
+			'zelenjava',
+			'solata - mešana',
+			'pijača',
+		],
+		tip: 'mesani',
+	},
+];
 
 const NarocenaMalica = (props) => {
-	const maliceCtx = useContext(MaliceContext);
-	const [naroceneMalice, setNaroceneMalice] = useState([]);
+	const [narocenaMalica, setNaroceneMalice] = useState(MENIIJI[0]);
 
-	useEffect(() => {
-		const fetchedMalice = maliceCtx.fetchMalice();
-		setNaroceneMalice([...fetchedMalice]);
-	}, []);
+	const navigate = useNavigate();
+
+	const potrdiMalicoHandler = () => {
+		navigate('/');
+	};
 
 	return (
-		<React.Fragment>
-			<Navigation />
-			<div className={style.naroceno}>
-				<div style={{ fontSize: '1.5rem' }}>
-					Naročena malica za danes:
-				</div>
-				<div className={style.naroceniMeniji}>
-					{naroceneMalice.map((malica, i) => (
-						<MeniCard
-							key={i}
-							id={i}
-							ime={malica.ime}
-							vsebina={malica.vsebina}
-							tip={malica.tip}
-							slika={malica.slika}
-						/>
-					))}
-				</div>
-				<MalicaBtn to='narocilo' text='Naroči malico' />
-				<MalicaBtn to='odpoved' text='Odpovej malico' />
+		<div className={style.naroceno}>
+			<div className={style.narocenoTitle}>Naročena malica za danes:</div>
+			<div className={style.naroceniMeni}>
+				<MeniCard
+					key={narocenaMalica.id}
+					id={narocenaMalica.id}
+					ime={narocenaMalica.ime}
+					vsebina={narocenaMalica.vsebina}
+					tip={narocenaMalica.tip}
+				/>
 			</div>
-		</React.Fragment>
+			<MalicaBtn
+				text='Potrdi malico'
+				potrdiMalico={potrdiMalicoHandler}
+			/>
+		</div>
 	);
 };
 

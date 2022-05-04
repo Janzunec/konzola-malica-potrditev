@@ -4,9 +4,9 @@ import style from './MalicaBtn.module.css';
 
 const MalicaBtn = (props) => {
 	return (
-		<Link to={`/${props.to}`} className={style.malicaBtn}>
+		<button className={style.malicaBtn} onClick={props.potrdiMalico}>
 			{props.text}
-		</Link>
+		</button>
 	);
 };
 

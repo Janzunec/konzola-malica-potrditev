@@ -1,6 +1,6 @@
 .meniCard {
-	height: 270px;
-	width: 600px;
+	height: 250px;
+	width: 250px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;

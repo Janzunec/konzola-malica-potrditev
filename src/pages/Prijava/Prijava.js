@@ -19,7 +19,7 @@ const Prijava = () => {
 
 	const submitFunctionHandler = (e) => {
 		e.preventDefault();
-		if (zaposleniID === '1107233449') {
+		if (zaposleniID === '25502729') {
 			navigate('/naroceno');
 		}
 	};

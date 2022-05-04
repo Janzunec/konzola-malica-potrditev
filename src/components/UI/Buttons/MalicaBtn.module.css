@@ -1,6 +1,6 @@
 .malicaBtn {
 	height: 50px;
-	width: 250px;
+	width: 280px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -20,6 +20,7 @@
 
 .malicaBtn:active {
 	box-shadow: none;
-	border: 1px solid #415169;
+	border: 1px solid #00ff00;
 	background-color: #364357;
+	color: rgb(0, 255, 0);
 }
