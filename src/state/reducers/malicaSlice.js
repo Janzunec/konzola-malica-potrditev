@@ -1,39 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { API_KEY } from '../../private/API_KEYS';
 
-const MENIIJI = [
-	{
-		id: 1,
-		ime: 'Mesni meni',
-		vsebina: ['riž', 'piščanec', 'omaka', 'solata - zelena', 'pijača'],
-		tip: 'mesni',
-	},
-	{
-		id: 2,
-		ime: 'Vegi meni',
-		vsebina: ['krompir', 'soja', 'zelenjava', 'solata - mešana', 'pijača'],
-		tip: 'vegi',
-	},
-	{
-		id: 3,
-		ime: 'Lahki meni',
-		vsebina: ['Sendvič', 'Jogurt', 'Jabolko', 'pijača'],
-		tip: 'lahki',
-	},
-	{
-		id: 4,
-		ime: 'Mešani meni',
-		vsebina: [
-			'krompir',
-			'piščančji zrezek',
-			'zelenjava',
-			'solata - mešana',
-			'pijača',
-		],
-		tip: 'mesani',
-	},
-];
-
 const initialStateMalice = {
 	malica: undefined,
 };

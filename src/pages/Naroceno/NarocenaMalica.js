@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MeniCard from '../../components/UI/Cards/MeniCard';
 import style from './NarocenaMalica.module.css';
 import MalicaBtn from '../../components/UI/Buttons/MalicaBtn';
