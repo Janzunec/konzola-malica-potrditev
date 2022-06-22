@@ -3,46 +3,18 @@ import MeniCard from '../../components/UI/Cards/MeniCard';
 import style from './NarocenaMalica.module.css';
 import MalicaBtn from '../../components/UI/Buttons/MalicaBtn';
 import { useNavigate } from 'react-router-dom';
-
-const MENIIJI = [
-	{
-		id: 1,
-		ime: 'Mesni meni',
-		vsebina: ['riž', 'piščanec', 'omaka', 'solata - zelena', 'pijača'],
-		tip: 'mesni',
-	},
-	{
-		id: 2,
-		ime: 'Vegi meni',
-		vsebina: ['krompir', 'soja', 'zelenjava', 'solata - mešana', 'pijača'],
-		tip: 'vegi',
-	},
-	{
-		id: 3,
-		ime: 'Lahki meni',
-		vsebina: ['Sendvič', 'Jogurt', 'Jabolko', 'pijača'],
-		tip: 'lahki',
-	},
-	{
-		id: 4,
-		ime: 'Mešani meni',
-		vsebina: [
-			'krompir',
-			'piščančji zrezek',
-			'zelenjava',
-			'solata - mešana',
-			'pijača',
-		],
-		tip: 'mesani',
-	},
-];
+import { authAction } from '../../state/reducers/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const NarocenaMalica = (props) => {
-	const [narocenaMalica, setNaroceneMalice] = useState(MENIIJI[0]);
+	const narocenaMalica = useSelector((state) => state.malica);
+
+	const dispatch = useDispatch();
 
 	const navigate = useNavigate();
 
 	const potrdiMalicoHandler = () => {
+		dispatch(authAction.logout());
 		navigate('/');
 	};
 
@@ -50,13 +22,15 @@ const NarocenaMalica = (props) => {
 		<div className={style.naroceno}>
 			<div className={style.narocenoTitle}>Naročena malica za danes:</div>
 			<div className={style.naroceniMeni}>
-				<MeniCard
-					key={narocenaMalica.id}
-					id={narocenaMalica.id}
-					ime={narocenaMalica.ime}
-					vsebina={narocenaMalica.vsebina}
-					tip={narocenaMalica.tip}
-				/>
+				{narocenaMalica && (
+					<MeniCard
+						key={narocenaMalica.id}
+						id={narocenaMalica.id}
+						ime={narocenaMalica.ime}
+						vsebina={narocenaMalica.vsebina}
+						tip={narocenaMalica.tip}
+					/>
+				)}
 			</div>
 			<MalicaBtn
 				text='Potrdi malico'

@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { API_KEY } from '../../private/API_KEYS';
+import { authAction } from '../../state/reducers/authSlice';
 import style from './Prijava.module.css';
 
 const Prijava = () => {
 	const [zaposleniID, setZaposleniID] = useState('');
+	const dispatch = useDispatch();
 
 	// To keepam, če slučajno na microsoft edgu na konzoli autoFocus nebi deloval
 	const inputRef = useRef(null);
@@ -51,7 +54,7 @@ const Prijava = () => {
 
 				const userData = await req.json();
 				// setErrorMsg('');
-				// dispatch(authAction.logIn(userData));
+				dispatch(authAction.logIn(userData));
 				navigate('/naroceno');
 			};
 
