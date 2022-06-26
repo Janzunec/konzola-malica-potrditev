@@ -7,6 +7,8 @@ import style from './Prijava.module.css';
 
 const Prijava = () => {
 	const [zaposleniID, setZaposleniID] = useState('');
+	const [error, setError] = useState('');
+
 	const dispatch = useDispatch();
 
 	// To keepam, če slučajno na microsoft edgu na konzoli autoFocus nebi deloval
@@ -23,9 +25,7 @@ const Prijava = () => {
 
 	const submitFunctionHandler = (e) => {
 		e.preventDefault();
-		// if (zaposleniID === '25502729') {
-		// 	navigate('/naroceno');
-		// }
+
 		const inputCode = inputRef.current.value;
 
 		try {
@@ -41,14 +41,17 @@ const Prijava = () => {
 
 				if (!req.ok) {
 					if (req.status === 404) {
-						const error = 'Uporabnik s to kodo ne obstaja!';
-						// setErrorMsg(error);
+						const errorMsg = 'Uporabnik s tem ID ne obstaja!';
+						setError(errorMsg);
+
 						throw new Error(error);
 					}
 					if (req.status === 403) {
-						const error = 'Dostop zavrnjen!';
+						const errorMsg = 'Dostop zavrnjen!';
+						setError('Dostop zavrnjen!');
+
 						// setErrorMsg(error);
-						throw new Error(error);
+						throw new Error(errorMsg);
 					}
 				}
 
@@ -59,18 +62,21 @@ const Prijava = () => {
 			};
 
 			fetchData();
-		} catch (error) {
-			console.log(error);
+		} catch (err) {
+			setError('Uporabnik ne obstaja');
+			console.log(err);
 		}
 	};
 
 	const idZaposlenegaInputHandler = (e) => {
 		setZaposleniID(e.target.value);
+		setError('');
 	};
 
 	return (
 		<div className={style.prijava}>
 			<div className={style.prijavaTitle}>Poskenirajte svojo kartico</div>
+			{error !== '' && <div className={style.error}>{error}</div>}
 			<form onSubmit={submitFunctionHandler}>
 				<input
 					name='ID_zaposlenega'

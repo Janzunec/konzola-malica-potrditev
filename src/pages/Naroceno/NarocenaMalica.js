@@ -7,9 +7,8 @@ import { authAction } from '../../state/reducers/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const NarocenaMalica = (props) => {
-	const narocenaMalica = useSelector((state) => state.malica);
-
 	const dispatch = useDispatch();
+	const narocenaMalica = useSelector((state) => state.malica);
 
 	const navigate = useNavigate();
 

@@ -28,7 +28,7 @@ export const fetchMalice = (username) => {
 				}
 			);
 			const data = await req.json().then((data) => data);
-			console.log(data);
+
 			if (data) dispatch(malicaActions.setMalice(data));
 		} catch (error) {
 			console.log(error);

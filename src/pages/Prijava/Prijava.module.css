@@ -22,3 +22,9 @@
 	padding: 0 10px;
 	color: white;
 }
+
+.error {
+	font-size: 1.5rem;
+	color: red;
+	text-transform: uppercase;
+}
